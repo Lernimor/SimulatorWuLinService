@@ -1,0 +1,42 @@
+.skill-panel{
+    position: absolute;
+    top: calc(30% + 1px);
+    left: calc(50% + 1px - 20px);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: white;
+}
+
+.skill-border{
+    position: absolute;
+    width: 46px;
+    height:46px;
+    border: 2px solid #707070;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.skill-border:hover{
+    cursor: pointer;
+}
+
+.skill-panel img{
+    position: absolute;
+    width: 100%;
+    height:100%;
+}
+
+.skill-panel p{
+    position: absolute;
+    top : 110%;
+    right: -50%;
+    font-size: 28px;
+    width: 200%;
+    text-align: center
+}
+
+.skill-panel .skill-name{
+    top : 110%;
+}

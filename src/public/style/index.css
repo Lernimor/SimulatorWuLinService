@@ -1,0 +1,174 @@
+.profession-list-panel{
+    position: relative;
+    flex : 1;
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    overflow: auto;
+}
+
+.profession-list-panel ul{
+    padding: 15px 5px;
+}
+
+/*HEADER*/
+.header{
+    display:flex;
+    justify-content:left;
+    align-items:center;
+    width : 100%;
+    height: 48px;
+    text-align: center;
+    background: #ffcb20;
+    border-bottom: 6px double #707070; 
+    color: #707070;
+    position: fixed;
+}
+.header img{
+    width: 36px;
+    height: 36px;
+    padding-right: 15px;
+    padding-left: 10px;
+}
+.header p{
+    font-size: 20px;
+    font-weight: bold;
+}
+.level-panel {
+    position: absolute;
+    right: 0;
+    width : 100px;
+    font-size: 12px;
+    z-index: 5;
+}
+
+.level-text {
+    margin-bottom: 3px;
+}
+
+.level-panel input[type='text']{
+    margin-left: 10px;
+    height : 14px;
+    width : 25px;
+    vertical-align: top;
+}
+
+.level-panel input[type='radio']{
+    height : 12px;
+    vertical-align: middle;
+}
+
+/*FOOTER*/
+.footer {
+    width: 100%;
+    height: 72px;
+    background: #ffcb20;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    text-align: center;
+    border-top: 6px double slategrey; 
+}
+.footer ul {
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+}
+.footer ul li {
+    list-style: none;
+    float: left;
+    height: 100%;
+    width: 25%;
+}
+.footer ul li img {
+    height: 80%;
+    transform: translate(0,10%)
+}
+.menu{
+    position: absolute;
+    display: none;
+    width: 86px;
+    background: #ffcb20;
+}
+.profession-menu{
+    height: 120px;
+    bottom: 72px;
+    border-top: 2px solid slategrey; 
+    border-left: 2px solid slategrey; 
+    border-right: 2px solid slategrey; 
+}
+.other-menu{
+    border-bottom: 2px solid slategrey; 
+    border-left: 2px solid slategrey; 
+    border-right: 2px solid slategrey; 
+}
+.profession-menu ul li{
+    height: 33.3%;
+}
+.menu ul{
+    display:inline-block;
+    width: 100%;
+    height: 100%;
+}
+.menu ul li{
+    list-style: none;
+    width: 100%;
+}
+
+.menu ul li:hover{
+    background: rgba(112, 128, 144,0.5);
+}
+
+.menu ul li div{
+    display:flex;
+    width: 100%;
+    height: 100%;
+    justify-content:center;
+    align-items:center;
+}
+.menu ul li div img{
+    vertical-align: top;
+    width: 36px;
+    height: 36px;
+}
+
+.menu ul li div span{
+    width:5%
+}
+
+.menu ul li div p{
+    color: slategrey
+}
+
+/*主页面*/
+.container{
+    position: fixed;
+    width: 100%;
+    top: calc(48px + 6px);
+    bottom: calc(72px + 6px);
+    background-image:url(/public/file/img/main/bjk.png); 
+    background-repeat:no-repeat; 
+    background-size:100% 100%;
+    -moz-background-size:100% 100%;
+}
+
+.lave-point-num{
+    position:absolute;
+    width: 100%;
+    height: 12%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size : 20px;
+    bottom:0;
+    font-size: 16px;
+}
+
+.container_backImg{
+    position:absolute;
+    left:0px;
+    right: 0px;
+    top:0px;
+    bottom: 0px;
+    margin:auto;
+}

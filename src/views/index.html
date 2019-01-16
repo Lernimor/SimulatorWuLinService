@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="/public/script/tools/vue.js"></script>
+    <script type="text/javascript" src="/public/script/tools/hammer.min.js"></script>
+    <script type="text/javascript" src="/public/script/tools/vue-touch.min.js"></script>
+    <script type="text/javascript" src="/public/script/OtherPlugin/MsgBox/modernizr.custom.js"></script>
+    <script type="text/javascript" src="/public/script/tools/jsLoader.js"></script>
+    <script type="text/javascript" src="/public/script/EntryJs.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="header">
+            <img :src="selProModel.icon" @click="showMoreMenu($event)">
+            <p>{{selProModel.name}}</p>
+            <div class="level-panel">
+                <div class="level-text">
+                    <span>等级:</span><input type="text" v-model="roleLevel"/>
+                </div>
+                <div class="level-state">
+                    <input type="radio" name="state" value="0" v-model="levelState" checked/><span>新手</span>
+                    <input type="radio" name="state" value="1" v-model="levelState"/><span>涅槃</span>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="lave-point-num">
+                <p class="lave-point-num-p">可用技能点:{{lavePoint}}</p>
+            </div>
+            <img class="container_backImg" src="/public/file/img/main/bjt.png">
+            <div class="carouselContain">
+                <v-touch class="prefession-panel animation" @swipeleft="next_pic()" @swiperight="prev_pic()" :swipe-options="{direction: 'horizontal'}">
+                    <div class="prefession-page" 
+                        :style="'width:' + 100/pages.length + '%'" 
+                        v-for="(page,pageIndex) in pages">
+                        <div class="page-title">
+                            <p>{{page.typeName}} {{page.name}}</p>
+                        </div>
+                        <template v-for="(cols,row) in page.layout">
+                                <template v-for="(jn,col) in cols">
+                                    <skill-icon 
+                                        :img-radius = "jnRadius" 
+                                        :x = "pageIndex + ((col+1) / (cols.length+1))+''" 
+                                        :y = " (row+0.5) / (page.layout.length+0.5) +''" 
+                                        :img-url = "jn.icon" 
+                                        :slill-type = "jn.key" 
+                                        :slill-name = "jn.name" 
+                                        :level = "parseInt(jn.level)"
+                                        @listenclick="clickSkill">
+                                    </skill-icon>
+                                </template>
+                        </template>
+                    </div>
+                </v-touch>
+                <div class="clear"></div>
+                <a class="arrow arrow_left" @click="prev_pic">&lt;</a>
+                <a class="arrow arrow_right" @click="next_pic">&gt;</a> 
+            </div>
+        </div>
+        <div class="footer">
+            <ul>
+                <li v-for="(item,index,key) in professionList">
+                    <img :src="selType!=item.type ? item.icondef : item.icon" 
+                        @click="showProfession(item, key, $event)">
+                </li>
+            </ul>
+        </div>
+        <div class="profession-menu menu">
+            <ul>
+                <li v-for="item in activeList">
+                    <div @click="changeProfession(item)">
+                        <img :src="item.icon">
+                        <span></span>
+                        <p>{{item.name}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="other-menu menu">
+            <ul>
+                <li @click="exportSkill(null)">
+                    <div>
+                        <span></span>
+                        <p>导出方案</p>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <span></span>
+                        <p>全部导出</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <detail-dialog ref="detail" @changelevel="changeSkillLevel"></detail-dialog>
+        <div class="mask"></div>
+    </div>
+</body>
+</html>
