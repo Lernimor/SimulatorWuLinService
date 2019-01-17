@@ -52,7 +52,7 @@ let createVueApp = function(){
             let v = this;
             LoadFile.JsLoader.load("/public/file/profession.js", true, function(){
                 getProfessionJson(v.loadProfession);
-                let msg = "谨以此纪念已经提前离开的披萨、仙儿、老庄！\n纪念曾经充满欢乐的<梧桐引>！\n纪念曾经51区<侠客行>的所有小伙伴们！\n特别感谢<鸡块、>提供的枪系和医系账号！"
+                let msg = "谨以此纪念已经提前离开的披萨、仙儿、老庄！\n纪念曾经充满欢乐的<梧桐引>！\n纪念曾经51区<侠客行>的所有小伙伴们！\n特别感谢<鸡块、>提供的枪系账号！"
                 window.showMsgDialog(msg,'jelly','notice',10000);
             });  
         },
