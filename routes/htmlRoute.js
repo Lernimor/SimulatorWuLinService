@@ -7,7 +7,7 @@ router.get('/index?(.html|)', function(req, res, next) {
 });
 
 /*html内引用文件路由, ex:jpg,js,css等*/
-router.get('*.(gif|jpg|jpeg|bmp|png|js|css)', function(req, res, next) {
+router.get('*.(gif|jpg|jpeg|bmp|png|js|css|ico)', function(req, res, next) {
 	var path = process.cwd() + req.url;
 	fs.readFile(path,function(err,stdout,stderr){
 		if(!err){
