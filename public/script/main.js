@@ -106,6 +106,10 @@ let createVueApp = function(){
             changeProfession : function (item){
                 if (!item) 
                     return;
+                else if (item['p-type'] == 'ys'){
+                    window.showMsgDialog("医系暂时不可用，敬请期待。",'jelly','notice',10000);
+                    return;
+                }
                 let oldType = this.selProModel['type'];
                 if (this.customedSkillMap[oldType])
                     this.customedSkillMap[oldType].usedPoint = this.usedPoint;
