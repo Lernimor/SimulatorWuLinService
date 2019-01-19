@@ -48,6 +48,8 @@ Vue.component('detail-dialog',{
                 AtkMore : '',//伤害加深
                 AtkBack : '',//伤害反弹
                 HpHeal : '',//恢复生命
+                HpHealNum : '',//附加治疗量
+                HpHealPer : '',//恢复生命系数
                 MpHeal : '',//恢复真气
                 ReduceAtk : '',//防御攻击
                 ReduceDef : '',//防御降低
@@ -348,6 +350,12 @@ Vue.component('detail-dialog',{
         +            '</li>'
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpHeal">'
         +                '<span>生命恢复:</span><span v-if="isNew==false">{{skillList.growing.HpHeal[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpHeal"/>%'
+        +            '</li>'
+        +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpHealNum">'
+        +                '<span>附加治疗量:</span><span v-if="isNew==false">{{skillList.growing.HpHealNum[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpHealNum"/>'
+        +            '</li>'
+        +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpHealPer">'
+        +                '<span>治疗效果:</span><span v-if="isNew==false">{{skillList.growing.HpHealPer[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpHealPer"/>%'
         +            '</li>'
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.MpHeal">'
         +                '<span>真气恢复:</span><span v-if="isNew==false">{{skillList.growing.MpHeal[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.MpHeal"/>'
