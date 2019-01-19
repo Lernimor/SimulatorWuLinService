@@ -58,6 +58,7 @@ Vue.component('detail-dialog',{
                 ReduceHit : '',//命中降低
                 ReduceBuff : '',//全精通削弱
                 ReduceDebuff : '',//全抗性削弱
+                ReduceHpHeal : '',//治疗削弱
                 ReduceMp : '',//真气削减
                 ReduceCD : '',//冷却缩短
                 ReduceMpAfter : '',//额外真气削减
