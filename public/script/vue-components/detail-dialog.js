@@ -50,6 +50,8 @@ Vue.component('detail-dialog',{
                 HpHeal : '',//恢复生命
                 HpHealNum : '',//附加治疗量
                 HpHealPer : '',//恢复生命系数
+                HpHealPerAfter : '',//额外治疗效果
+                HpUp : '',//气血上限提升
                 MpHeal : '',//恢复真气
                 ReduceAtk : '',//防御攻击
                 ReduceDef : '',//防御降低
@@ -358,6 +360,12 @@ Vue.component('detail-dialog',{
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpHealPer">'
         +                '<span>治疗效果:</span><span v-if="isNew==false">{{skillList.growing.HpHealPer[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpHealPer"/>%'
         +            '</li>'
+        +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpHealPerAfter">'
+        +                '<span>单次治疗效果:</span><span v-if="isNew==false">{{skillList.growing.HpHealPerAfter[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpHealPerAfter"/>%'
+        +            '</li>'
+        +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.HpUp">'
+        +                '<span>血上限提升:</span><span v-if="isNew==false">{{skillList.growing.HpUp[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.HpUp"/>%'
+        +            '</li>'
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.MpHeal">'
         +                '<span>真气恢复:</span><span v-if="isNew==false">{{skillList.growing.MpHeal[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.MpHeal"/>'
         +            '</li>'
@@ -414,7 +422,7 @@ Vue.component('detail-dialog',{
         +                '<span>生命护盾:</span><span v-if="isNew==false">{{skillList.growing.DefByHP[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.DefByHP"/>%'
         +            '</li>'
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.DefByMP">'
-        +                '<span>真气抵伤:</span><span v-if="isNew==false">{{skillList.growing.DefByMP[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.DefByMP"/>'
+        +                '<span>真气护盾:</span><span v-if="isNew==false">{{skillList.growing.DefByMP[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.DefByMP"/>'
         +            '</li>'
         +            '<li class="detail-skill-property" v-if="isNew==true || skillList.growing.MpToHp">'
         +                '<span>真气回血比例:</span><span v-if="isNew==false">{{skillList.growing.MpToHp[parseInt(level - 1)] || "0"}}</span><input type="text" v-if="isNew==true" v-model="skillModel.MpToHp"/>'
