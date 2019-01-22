@@ -89,8 +89,10 @@
 .detail-desc-panel div textarea:disabled{
     border: 0px none rgba(255, 255, 255, 0);
     background: rgba(255, 255, 255, 0);
-    color: black;
     -webkit-text-fill-color: black;
+    color: black;
+    -webkit-opacity:1;
+	opacity: 1;
 }
 
 .detail-level{
