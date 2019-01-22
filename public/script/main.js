@@ -52,7 +52,7 @@ let createVueApp = function(){
             let v = this;
             LoadFile.JsLoader.load("/public/file/profession.js", true, function(){
                 getProfessionJson(v.loadProfession);
-                let msg = "本模拟器最高仅记录涅槃111级之前的数据，之后有待等更新。\n谨以此纪念已经提前离开的披萨、仙儿、老庄！\n纪念曾经充满欢乐的<梧桐引>！\n纪念曾经51区<侠客行>的所有小伙伴们！\n感谢【Oい汏尐姐？】提供的医系账号！\n感谢【鸡块、】提供的枪系账号！"
+                let msg = "本模拟器最高仅记录涅槃111级之前的数据，之后有待等更新。\n谨以此纪念已经提前离开的披萨、仙儿、老庄！\n纪念曾经充满欢乐的【梧桐引】！\n纪念曾经【51区-侠客行】的所有小伙伴们！\n感谢【Oい汏尐姐？】提供的医系账号！\n感谢【鸡块、】提供的枪系账号！"
                 window.showMsgDialog(msg,'jelly','notice',10000);
             });  
         },
