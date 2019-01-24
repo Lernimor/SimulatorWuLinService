@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>home</title>
+    <style type="text/css">
+        .container{
+            position:fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(112, 128, 144,0.8);
+        }
+        .gra-white{
+            position: absolute;
+            height: 300px;
+            background-color: black;
+            left : 100px;
+            margin: auto;
+        }
+        .gra-text{
+            position: absolute;
+            color: white;
+        }
+        .progress{
+            position: absolute;
+            width: 10px;
+            height: 1%;
+            bottom: 1%;
+            left: 0;
+            right: 0;
+            background-color: wheat;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gra-white">
+            <div class="progress"></div>
+            <span class="gra-text">0</span>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    let startX =-1, startY =-1, endX = endY = 0;    
+    let height = 0;
+    let can = false;
+    document.addEventListener("touchstart",function(e){
+        let _touch = e.targetTouches[0];
+        timeOutEvent = setTimeout(function(){
+           let t = document.querySelector(".gra-white");
+           t.style.display = "block";
+           t.style.left = _touch.clientX+"px";
+
+           let t1 = document.querySelector(".progress");
+           t.style.top = _touch.clientY - (t.clientHeight - t1.clientHeight)  + "px";
+           let text = document.querySelector(".gra-text");
+           text.style.top = (t.clientHeight - t1.clientHeight - 12)  + "px";
+           text.style.left = 15 +"px";
+           height = t.clientHeight;
+           can = true;
+           startX = _touch.pageX;
+           startY = _touch.pageY;
+        },1000);
+    });
+
+    document.addEventListener("touchmove",function(e){
+        if (!can) return;
+        let t = document.querySelector(".progress");
+        let text = document.querySelector(".gra-text");
+        var _touch = event.targetTouches[0];
+        let s = height / 20;
+        endX = _touch.pageX;
+        endY = _touch.pageY;
+        let cj = Math.abs(endY-startY);
+        if (endY-startY < 0 && t.clientHeight >= 0){
+            let lastH = t.clientHeight-cj;
+            if (lastH < 0){
+                lastH = 0;
+            }
+            t.style.height = lastH +"px";
+            text.style.top = height - lastH  - 12 +"px";
+            text.innerHTML = parseInt(lastH/s);
+            startY = endY;
+        }
+        else if(t.clientHeight >= 0 && t.clientHeight <= height) {
+            let lastH = t.clientHeight + cj;
+            if (lastH > height){
+                lastH = height;
+            }
+            t.style.height = lastH+"px";
+            text.style.top = height - lastH  - 12 +"px";
+            text.innerHTML = parseInt(lastH/s);
+            startY = endY;
+        }
+    });
+
+    document.addEventListener("touchend",function(e){
+        clearTimeout(timeOutEvent);
+        let t = document.querySelector(".gra-white");
+        // t.style.display = "none";
+        can = false;
+        startX = 0;startY = 0;endX = endY = 0;    
+    });
+</script>
+</html>
