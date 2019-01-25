@@ -229,15 +229,15 @@ let createVueApp = function(){
                 detail.showDialog();
             },
             changeSkillLevel : function (id, level, initLevel){
-                let page = this.customedSkillMap[this.selProModel['type']];
-                let skillLayout = this.findSkillByPageLayout(page, id);
+                let skillLayout = this.findSkillByPageLayout(id);
                 if (skillLayout != null){
                     let addLevel = parseInt(level) - parseInt(initLevel);
                     this.usedPoint = parseInt(this.usedPoint) + addLevel;
                     skillLayout.level = level;
                 }
             },
-            findSkillByPageLayout : function (page, id){
+            findSkillByPageLayout : function (id){
+                let page = this.customedSkillMap[this.selProModel['type']];
                 for (let i=0; i<page.length; i++){
                     let layout = page[i].layout;
                     for (let a=0; a<layout.length; a++){
@@ -249,6 +249,16 @@ let createVueApp = function(){
                     }
                 }
                 return null;
+            },
+            findGrandAndRoleInfo : function(id){
+                let skillLayout = this.findSkillByPageLayout(id);
+                let refLevel = 0;
+                if (skillLayout != null){
+                    refLevel = skillLayout.level;
+                }
+                let userlevel = this.roleLevel;
+                if (this.levelState == 1)
+                    userlevel = parseInt(this.roleLevel) + 150;
             },
             //end
 

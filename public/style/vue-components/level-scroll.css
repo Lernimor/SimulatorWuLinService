@@ -1,0 +1,20 @@
+.level-scroll-panel{
+    position: absolute;
+    width: 30px;
+    height: 160px;
+    margin: auto;
+    z-index: 101;
+    display: none;
+}
+.level-scroll-text{
+    position: absolute;
+    color: white;
+    left : 0;
+    background-color: rgba(66, 66, 66, 0.575);
+}
+.level-scroll-progress{
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    background-color: rgba(88, 88, 86, 0.062);
+}

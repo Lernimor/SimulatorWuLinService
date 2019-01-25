@@ -83,12 +83,52 @@ Vue.component('skill-icon',{
             }
             panel.style.left = parseFloat(this.x) * cWidth - this.radius / 2 + borderSize/2 + 'px';
             panel.style.top = parseFloat(this.y) * cHeight + borderSize /2 + 'px';
-        }
+        },
+
+        getSkillInfo : function(list){
+            let levelscroll = this.$refs['levelscroll'];
+            levelscroll.minLevel = 0;
+            if (list.growing.RefSkill){
+                this.$emit('findrefinfo', list.growing.RefSkill.refId); 
+            }
+            levelscroll.minLevel = 0;
+            if(this.slillType.indexOf("ptgj") != -1){
+                levelscroll.minLevel = 1;
+            }
+        },
+
+        startTouch : function(e){
+            let levelscroll = this.$refs['levelscroll'];
+            let v = this;
+            if(!window.skills){
+                LoadFile.JsLoader.load("/public/file/skill.js", true, function(){
+                    v.getSkillInfo(searchSkill(v.slillType));
+                });  
+            }
+            else {
+                this.getSkillInfo(searchSkill(v.slillType));
+            }
+            
+            levelscroll.showScoll(e);
+        },
+        moveTouch : function(e){
+            this.$refs['levelscroll'].changeLevel(e);
+        },
+        endTouch : function(e){
+            this.$refs['levelscroll'].hideScroll(e);
+        },
     },
     template : 
     '<div class="skill-panel">'
         +'<img class="skill-img" :src="imgUrl"/>'
         +'<div class="skill-border" @click="openSkillDia"></div>'
-        +'<p class="skill-name" v-if="isMain" :style="\'font-size:\'+ nameSize +\'px\'">{{slillName}}<br>{{level}}级</p>'
+        +'<p class="skill-name" v-if="isMain" :style="\'font-size:\'+ nameSize +\'px\'">'
+            +'<span>{{slillName}}</span>'
+            +'<br>'
+            +'<span class="skill-name-level" @touchstart="startTouch($event)" @touchmove="moveTouch($event)" @touchend="endTouch($event)">'
+                +'{{level}}级'
+                +'<level-scroll ref="levelscroll"></level-scroll>'
+            +'</span>'
+        +'</p>'
     +'</div>'
 })

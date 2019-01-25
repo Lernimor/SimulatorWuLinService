@@ -46,6 +46,8 @@ function loadPlugin(){
     LoadFile.StyleLoader.load("/public/style/main-panel.css");
     LoadFile.StyleLoader.load("/public/style/vue-components/skill-icon.css");
     LoadFile.StyleLoader.load("/public/style/vue-components/detail-dialog.css");
+    LoadFile.StyleLoader.load("/public/style/vue-components/level-scroll.css");
+    
     LoadFile.StyleLoader.load("/public/style/OtherPlugin/MsgBox/demo.css");
     LoadFile.StyleLoader.load("/public/style/OtherPlugin/MsgBox/ns-default.css");
     LoadFile.StyleLoader.load("/public/style/OtherPlugin/MsgBox/ns-style-growl.css");
@@ -56,6 +58,7 @@ function loadPlugin(){
     //load customed component
     LoadFile.JsLoader.load("/public/script/vue-components/skill-icon.js", false);
     LoadFile.JsLoader.load("/public/script/vue-components/detail-dialog.js", false);
+    LoadFile.JsLoader.load("/public/script/vue-components/level-scroll.js", false);
     //load main App
     LoadFile.JsLoader.load("/public/script/main.js", false);
 

@@ -6,28 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>home</title>
     <style type="text/css">
-        .container{
-            position:fixed;
-            width: 100%;
-            height: 100%;
-            background: rgba(112, 128, 144,0.8);
-        }
-        .gra-white{
+        .level-scroll-panel{
             position: absolute;
-            height: 300px;
-            background-color: black;
+            width: 20px;
+            height: 200px;
             left : 100px;
             margin: auto;
+            display: none;
         }
-        .gra-text{
+        .level-scroll-text{
             position: absolute;
             color: white;
         }
-        .progress{
+        .level-scroll-progress{
             position: absolute;
             width: 10px;
-            height: 1%;
-            bottom: 1%;
+            height: 100%;
             left: 0;
             right: 0;
             background-color: wheat;
@@ -35,71 +29,67 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="gra-white">
-            <div class="progress"></div>
-            <span class="gra-text">0</span>
-        </div>
+    <div class="level-scroll-panel">
+        <div class="level-scroll-progress"></div>
+        <span class="level-scroll-text">0</span>
     </div>
 </body>
 <script type="text/javascript">
     let startX =-1, startY =-1, endX = endY = 0;    
-    let height = 0;
+    let startTop = 0,stratLevel = 0;
+    let height = 0, unitHeight = 0;
     let can = false;
     document.addEventListener("touchstart",function(e){
         let _touch = e.targetTouches[0];
         timeOutEvent = setTimeout(function(){
-           let t = document.querySelector(".gra-white");
-           t.style.display = "block";
-           t.style.left = _touch.clientX+"px";
-
-           let t1 = document.querySelector(".progress");
-           t.style.top = _touch.clientY - (t.clientHeight - t1.clientHeight)  + "px";
-           let text = document.querySelector(".gra-text");
-           text.style.top = (t.clientHeight - t1.clientHeight - 12)  + "px";
-           text.style.left = 15 +"px";
-           height = t.clientHeight;
            can = true;
            startX = _touch.pageX;
            startY = _touch.pageY;
-        },1000);
+
+           let t = document.querySelector(".level-scroll-panel");
+           let t1 = document.querySelector(".level-scroll-progress");
+           t.style.display = "block";
+
+           let text = document.querySelector(".level-scroll-text");
+
+           height = t.clientHeight;
+           unitHeight = height / 20;
+           stratLevel = parseInt(text.innerHTML)
+           startTop = -unitHeight * stratLevel;
+
+           t.style.left = _touch.clientX + "px";
+           t.style.top = _touch.clientY - (height - t1.clientHeight) + "px";
+           
+           text.style.top = (height - t1.clientHeight - 13)  + "px";
+           text.style.left = 15 +"px";
+        },500);
     });
 
     document.addEventListener("touchmove",function(e){
         if (!can) return;
-        let t = document.querySelector(".progress");
-        let text = document.querySelector(".gra-text");
-        var _touch = event.targetTouches[0];
-        let s = height / 20;
+        var _touch = e.targetTouches[0];
         endX = _touch.pageX;
         endY = _touch.pageY;
+
+        let gra = document.querySelector(".level-scroll-panel");
+        let t = document.querySelector(".level-scroll-progress");
+        let text = document.querySelector(".level-scroll-text");
+
         let cj = Math.abs(endY-startY);
-        if (endY-startY < 0 && t.clientHeight >= 0){
-            let lastH = t.clientHeight-cj;
-            if (lastH < 0){
-                lastH = 0;
-            }
-            t.style.height = lastH +"px";
-            text.style.top = height - lastH  - 12 +"px";
-            text.innerHTML = parseInt(lastH/s);
-            startY = endY;
-        }
-        else if(t.clientHeight >= 0 && t.clientHeight <= height) {
-            let lastH = t.clientHeight + cj;
-            if (lastH > height){
-                lastH = height;
-            }
-            t.style.height = lastH+"px";
-            text.style.top = height - lastH  - 12 +"px";
-            text.innerHTML = parseInt(lastH/s);
-            startY = endY;
+        let level = stratLevel + parseInt((endY-startY)/unitHeight);
+        if (level >=0 && level <= 20){
+            if (endY-startY < 0)
+                t.style.top = startTop + cj + "px";
+            else  
+                t.style.top = startTop - cj + "px";
+            text.innerHTML = level;
         }
     });
 
     document.addEventListener("touchend",function(e){
         clearTimeout(timeOutEvent);
-        let t = document.querySelector(".gra-white");
-        // t.style.display = "none";
+        let t = document.querySelector(".level-scroll-panel");
+        t.style.display = "none";
         can = false;
         startX = 0;startY = 0;endX = endY = 0;    
     });
