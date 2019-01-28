@@ -40,7 +40,7 @@ var whenReady = (function() {               //这个函数返回whenReady()函�
 })();
 
 function loadPlugin(){
-    //loadCss 
+//loadCss 
     LoadFile.StyleLoader.load("/public/style/common.css");
     LoadFile.StyleLoader.load("/public/style/index.css");
     LoadFile.StyleLoader.load("/public/style/main-panel.css");
@@ -52,17 +52,21 @@ function loadPlugin(){
     LoadFile.StyleLoader.load("/public/style/OtherPlugin/MsgBox/ns-default.css");
     LoadFile.StyleLoader.load("/public/style/OtherPlugin/MsgBox/ns-style-growl.css");
 
-    //load messageBox related
+//load messageBox related
     LoadFile.JsLoader.load("/public/script/OtherPlugin/MsgBox/classie.js", false);
     LoadFile.JsLoader.load("/public/script/OtherPlugin/MsgBox/notificationFx.js", false);
-    //load customed component
+//load customed component
     LoadFile.JsLoader.load("/public/script/vue-components/skill-icon.js", false);
     LoadFile.JsLoader.load("/public/script/vue-components/detail-dialog.js", false);
     LoadFile.JsLoader.load("/public/script/vue-components/level-scroll.js", false);
-    //load main App
+//load main App
     LoadFile.JsLoader.load("/public/script/main.js", false);
 
     LoadFile.JsLoader.load("/public/script/tools/exportTools.js", false);
+
+//load datas
+    // #Skill-List 
+    LoadFile.JsLoader.load("/public/file/skill.js", false);
 }
 
 window.onload = function(){
