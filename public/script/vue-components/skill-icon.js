@@ -145,13 +145,13 @@ Vue.component('skill-icon',{
             if(!window.skills){
                 LoadFile.JsLoader.load("/public/file/skill.js", true, function(){
                     v.getSkillInfo(searchSkill(v.slillType));
+                    levelscroll.showScoll(e);
                 });  
             }
             else {
                 this.getSkillInfo(searchSkill(v.slillType));
+                levelscroll.showScoll(e);
             }
-            
-            levelscroll.showScoll(e);
         },
         moveTouch : function(e){
             this.$refs['levelscroll'].changeLevel(e);
