@@ -250,16 +250,6 @@ let createVueApp = function(){
                 }
                 return null;
             },
-            findGrandAndRoleInfo : function(id){
-                let skillLayout = this.findSkillByPageLayout(id);
-                let refLevel = 0;
-                if (skillLayout != null){
-                    refLevel = skillLayout.level;
-                }
-                let userlevel = this.roleLevel;
-                if (this.levelState == 1)
-                    userlevel = parseInt(this.roleLevel) + 150;
-            },
             //end
 
             //更多功能
@@ -284,6 +274,23 @@ let createVueApp = function(){
                 let exportMap = this.customedSkillMap[this.selProModel['type']];
                 let v = this;
                 Exports.export(exportMap,v.selProModel);
+            },
+            findGrandAndRoleInfo : function(id, sv){
+                let userlevel = this.roleLevel;
+                if (this.levelState == 1)
+                    userlevel = parseInt(this.roleLevel) + 150;
+                let refLevel = 0;
+                if (id){
+                    let skillLayout = this.findSkillByPageLayout(id);
+                    if (skillLayout != null){
+                        refLevel = skillLayout.level;
+                    }
+                }
+                if (sv){
+                    sv.refLevel = parseInt(refLevel);
+                    sv.userLevel = parseInt(userlevel);
+                    sv.lavePoint = parseInt(this.lavePoint);
+                }
             }
         }
     });

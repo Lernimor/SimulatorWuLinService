@@ -142,7 +142,7 @@ function getProfession_Skill(typeList, selType, fun){
                     name : '开山斧',
                     layout : [
                         [
-                            {key : 'lhlds-xl', name : '罗皇凌地闪', icon : '/public/file/img/skill/qx/xl/lhlds-xl.png', level : 0},
+                            {key : 'lhldz-xl', name : '罗皇凌地斩', icon : '/public/file/img/skill/qx/xl/lhlds-xl.png', level : 0},
                             {key : 'ysz-xl', name : '养生主·修', icon : '/public/file/img/skill/qx/xl/ysz-xl.png', level : 0}
                         ],
                         [
@@ -171,7 +171,7 @@ function getProfession_Skill(typeList, selType, fun){
                         ],
                         [
                             {key : 'xlj-xl', name : '修罗劲', icon : '/public/file/img/skill/qx/xl/xlj-xl.png', level : 0}, 
-                            {key : 'ljmsz-xl', name : '罗皇灭世斩', icon : '/public/file/img/skill/qx/xl/lhmsz-xl.png', level : 0}
+                            {key : 'lhmsz-xl', name : '罗皇灭世斩', icon : '/public/file/img/skill/qx/xl/lhmsz-xl.png', level : 0}
                         ]
                     ]
                 }

@@ -35,6 +35,9 @@ Vue.component('skill-icon',{
         return {
             radius : this.imgRadius,
             nameSize : 30,
+            refLevel : 0,
+            userLevel : 0,
+            lavePoint : 0
         }
     },
     watch: {
@@ -87,13 +90,52 @@ Vue.component('skill-icon',{
 
         getSkillInfo : function(list){
             let levelscroll = this.$refs['levelscroll'];
-            levelscroll.minLevel = 0;
+            let refId = null;
             if (list.growing.RefSkill){
-                this.$emit('findrefinfo', list.growing.RefSkill.refId); 
+                refId = list.growing.RefSkill.refId;
             }
+            this.$emit('findrefinfo', refId, this); 
             levelscroll.minLevel = 0;
             if(this.slillType.indexOf("ptgj") != -1){
                 levelscroll.minLevel = 1;
+            }
+            levelscroll.level = this.level;
+            if (this.userLevel > 0){
+                let _GL = _RL = _LL = 20;
+                for (let i=0; i<list.growing.Level.length;i++){
+                    if (!list.growing.Level[i]) { continue; }
+                    let needLevel = list.growing.Level[i].replace('+', '');
+                    if (list.growing.Level[i] && list.growing.Level[i].indexOf('+') != -1)
+                        needLevel = parseInt(needLevel) + 150;
+                    else
+                        needLevel = parseInt(needLevel);
+                    if (needLevel > this.userLevel){
+                        _GL = i;
+                        break;
+                    }
+                    else if(needLevel == this.userLevel){
+                        _GL = i + 1;
+                        break;
+                    }
+                }
+                if (list.growing.RefSkill){
+                    for (let i=0; i<list.growing.RefSkill.refLevel.length;i++){
+                        if (!list.growing.RefSkill.refLevel[i]) { continue; }
+                        let rl = parseInt(list.growing.RefSkill.refLevel[i]);
+                        if (rl > this.refLevel){
+                            _RL = i;
+                            break;
+                        }
+                    }
+                }
+                if (this.lavePoint + this.level < 20){
+                    _LL = this.level + this.lavePoint;
+                }
+                let maxL = Math.min(_GL, _RL, _LL);
+                if (this.level > maxL){
+                    levelscroll.level = maxL <= 0 ? levelscroll.minLevel : maxL;
+                }
+                levelscroll.maxLevel = maxL <= 0 ? levelscroll.minLevel : maxL;
             }
         },
 
@@ -116,6 +158,8 @@ Vue.component('skill-icon',{
         },
         endTouch : function(e){
             this.$refs['levelscroll'].hideScroll(e);
+            let levelscroll = this.$refs['levelscroll'];
+            this.$emit('changelevel', this.slillType, levelscroll.level, levelscroll.stratLevel); 
         },
     },
     template : 

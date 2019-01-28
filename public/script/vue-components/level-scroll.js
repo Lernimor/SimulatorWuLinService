@@ -64,8 +64,6 @@ Vue.component('level-scroll',{
             this.startY = 0; 
             this.endX = 0;
             this.endY = 0;   
-            
-            
         }
     },
     template : 
